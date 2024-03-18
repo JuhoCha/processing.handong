@@ -1,6 +1,6 @@
 size(600, 600);
 boolean a = false; //boolean은 참거짓만 판별
-int b =1, c = -1; 
+int b =1, c = -1; //0만 아니면 true 
 if(a){}else{fill(225, 0, 0); //거짓
 ellipse(width/2, height/6, 50, 50);}
 
