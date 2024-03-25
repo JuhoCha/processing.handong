@@ -1,4 +1,4 @@
-size(900, 1000);
+size(1200, 1000);
 
 int x = width;
 float y = height*3/5;
@@ -9,9 +9,14 @@ background(99, 56, 5);
 fill(52);
 rect(0, y, x, 100);//도로
 
-for(int z = 0; z <width; z+=100){//중앙선
+for(int z = 0; z <width; z+=200){//중앙선
   fill(255, 151, 30);
   rect(50+z, y+50, 100, 10);
+}
+
+for(float plantX = 50;  plantX<width; plantX+=100){//위쪽 풀
+  fill(20, 173, 3);
+  triangle(plantX, carY, plantX+15, carY-30, plantX+30, carY);
 }
 
 noStroke();
@@ -21,3 +26,8 @@ rect(carX+40, carY-50, 60, 20);//바텀
 fill(#000000);
 ellipse(carX+30, carY+10, 30, 30);
 ellipse(carX+80, carY+10, 30, 30);
+
+for(float plantX = 50;  plantX<width; plantX+=100){//아래쪽 풀
+  fill(20, 173, 3);
+  triangle(plantX, carY+100, plantX+15, carY+70, plantX+30, carY+100);
+}
