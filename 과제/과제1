@@ -1,0 +1,12 @@
+size(800, 800);
+background(173, 231, 252);
+int py = height/2;
+fill(14, 103, 9);
+rect(0, py, width, height);
+int unit = height/120;
+
+//잔디
+for(int px = 0; px <width; px+=5){
+    fill(#0BAF04);
+    triangle(px+unit, py, px+unit*2, py-3, px+4*unit, py);
+}
