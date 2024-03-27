@@ -1,12 +1,65 @@
 size(800, 800);
 background(173, 231, 252);
-int py = height/2;
+int y = height/2; 
 fill(14, 103, 9);
-rect(0, py, width, height);
+rect(0, y, width, height);
 int unit = height/120;
 
+float sunit = height/80; //양 float
+float sx = width/2;
+float sy = height*3/4;
+
 //잔디
-for(int px = 0; px <width; px+=5){
-    fill(#0BAF04);
-    triangle(px+unit, py, px+unit*2, py-3, px+4*unit, py);
+for(int px = 0; px <width; px+=5*unit){
+  for(int py = y; py < height; py+=5*unit){
+    if(px<sx-10*sunit || px>sx+10*sunit || py<sy-13*sunit || py>sy+13*sunit){
+      fill(#0BAF04);
+      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py);
+      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py);
+      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py);
+    }
+  }
 }
+
+//양
+//다리
+fill(#64644E);
+strokeJoin(BEVEL);
+noStroke();
+rect(sx-4*sunit, sy+4*sunit, sunit*1, sunit*4, 10);
+rect(sx-2*sunit, sy+4*sunit, sunit*1, sunit*4, 10);
+rect(sx+1*sunit, sy+4*sunit, sunit*1, sunit*4, 10);
+rect(sx+2.5*sunit, sy+4*sunit, sunit*1, sunit*4, 10);
+
+fill(#F0EEB8);
+noStroke();//몸통
+ellipse(sx, sy, 8*sunit, 8*sunit); //큰원
+ellipse(sx+5*sunit, sy-1*sunit, 4.2*sunit, 4.2*sunit); //큰원 오른쪽
+ellipse(sx+4.5*sunit, sy-3*sunit, 4.2*sunit, 4.2*sunit); //오른쪽 45도 상단
+ellipse(sx+4.5*sunit, sy+2*sunit, 4.2*sunit, 4.2*sunit); //오른쪽 45도 하단
+ellipse(sx+2*sunit, sy+3*sunit, 4.2*sunit, 4.2*sunit); //오른쪽 5시 하단
+ellipse(sx-1*sunit, sy+3*sunit, 4.2*sunit, 4.2*sunit); //오른쪽 6시 하단
+ellipse(sx-4*sunit, sy+2*sunit, 4.2*sunit, 6*sunit); //왼쪽 7시 하단
+ellipse(sx-6*sunit, sy, 3.5*sunit, 6*sunit); //왼쪽 9시 
+ellipse(sx-6*sunit, sy-3.5*sunit, 3.2*sunit, 4*sunit); //왼쪽 11시 상단
+ellipse(sx-4.5*sunit, sy-5*sunit, 3.5*sunit, 3.5*sunit); //왼쪽 11시 옆 상단
+ellipse(sx-2*sunit, sy-3.5*sunit, 3.2*sunit, 3.8*sunit); //왼쪽 11시 옆옆 상단
+ellipse(sx+1.5*sunit, sy-4*sunit, 5.1*sunit, 4.2*sunit); //12시
+//얼굴
+fill(#FFFFF2);
+ellipse(sx-4*sunit, sy-1*sunit, 4.2*sunit, 5.2*sunit);//머리통
+fill(#050505);//눈
+ellipse(sx-3*sunit, sy-1.2*sunit, 0.5*sunit, 0.7*sunit); 
+ellipse(sx-5.2*sunit, sy-1.2*sunit, 0.5*sunit, 0.7*sunit);
+noFill(); //귀
+stroke(#64644E);
+strokeWeight(7);
+arc(sx-1*sunit, sy-3*sunit, sunit*3, sunit*3, HALF_PI, PI);
+arc(sx-7*sunit, sy-3*sunit, sunit*3, sunit*3, 0, HALF_PI);
+//입, 코, 인중
+strokeWeight(1);
+stroke(#0D0D0C);
+arc(sx-4*sunit, sy-0.2*sunit, sunit*1, sunit*1, HALF_PI, PI-HALF_PI/3);//코
+line(sx-4.3*sunit, sy+0.5*sunit, sx-4*sunit, sy+1*sunit);
+arc(sx-4*sunit, sy+0.7*sunit, sunit*1, sunit*1, 0+HALF_PI/3, PI-HALF_PI/3); //입
+
