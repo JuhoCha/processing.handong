@@ -9,15 +9,42 @@ float sunit = height/80; //양 float
 float sx = width/2;
 float sy = height*3/4;
 
+int xx = width; //꽃 부분에서 사용할것들
+int yy = height;
+
 //잔디
 for(int px = 0; px <width; px+=5*unit){
   for(int py = y; py < height; py+=5*unit){
-    if(px<sx-10*sunit || px>sx+10*sunit || py<sy-13*sunit || py>sy+13*sunit){
+    //꽃 비율이 다를때 꽃 나오는건 ok
+   if( xx < yy ){ if(px<sx-10*sunit || px>sx+10*sunit){ //화면 비율 다를때 꽃 나오고 양 주변 사라지게 하는 가로
+      fill(#DC5FFF); 
+      ellipse(px+2*unit, py-4*unit, 2.5*unit, 2.5*unit);
+      fill(#FF7982);
+      ellipse(px+2*unit, py-4*unit, 0.5*unit, 0.5*unit);
       fill(#0BAF04);
       triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py);
       triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py);
       triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py);
-    }
+   }
+   }
+   if( xx > yy ){ if( py<sy-13*sunit || py>sy+13*sunit){ //화면 비율 다를때 꽃 나오고 양 주변 사라지게 하는 세로
+      fill(#DC5FFF); 
+      ellipse(px+2*unit, py-4*unit, 2.5*unit, 2.5*unit);
+      fill(#FF7982);
+      ellipse(px+2*unit, py-4*unit, 0.5*unit, 0.5*unit);
+      fill(#0BAF04);
+      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py);
+      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py);
+      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py);
+   }
+   }
+   if( xx == yy ){ if( py<sy-13*sunit || py>sy+13*sunit || px<sx-10*sunit || px>sx+10*sunit){ //화면 비율 다를때 꽃 나오고 양 주변 사라지게 하는 세로
+      fill(#0BAF04);
+      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py);
+      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py);
+      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py);
+   }
+   }
   }
 }
 
@@ -62,4 +89,3 @@ stroke(#0D0D0C);
 arc(sx-4*sunit, sy-0.2*sunit, sunit*1, sunit*1, HALF_PI, PI-HALF_PI/3);//코
 line(sx-4.3*sunit, sy+0.5*sunit, sx-4*sunit, sy+1*sunit);
 arc(sx-4*sunit, sy+0.7*sunit, sunit*1, sunit*1, 0+HALF_PI/3, PI-HALF_PI/3); //입
-
