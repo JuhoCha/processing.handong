@@ -1,49 +1,49 @@
 size(800, 800);
-background(173, 231, 252);
-int y = height/2; //화면의 반
-fill(14, 103, 9);
-rect(0, y, width, height); 
-int unit = height/120;
+background(173, 231, 252); //하늘의 바탕 색
+int y = height/2; //화면의 반 하늘
+fill(14, 103, 9); //땅의 바탕 색
+rect(0, y, width, height); //땅
+int unit = height/120; //잔디에 쓸 unit을 지정함
 
 float sunit = height/80; //양의 float
 float sx = width/2; //양의 x좌표
 float sy = height*3/4; //양의 y좌표
 
-int xx = width; //꽃 부분에서 사용할것들 
-int yy = height;
+int xx = width; //꽃 부분에서 사용할 x 
+int yy = height; //꽃 부분에서 사용할 y
 
 //잔디
 for(int px = 0; px <width; px+=5*unit){
   for(int py = y; py < height; py+=5*unit){
     //비율이 다를때 꽃 나오는 코드
    if( xx < yy ){ if(px<sx-10*sunit || px>sx+10*sunit){ //화면 비율 다를때 꽃 나오고 양 주변 사라지게 하는 가로
-      fill(#DC5FFF);  //꽃
-      ellipse(px+2*unit, py-4*unit, 2.5*unit, 2.5*unit);
+      fill(#DC5FFF);  //꽃의 색
+      ellipse(px+2*unit, py-4*unit, 2.5*unit, 2.5*unit); //꽃 큰거
       fill(#FF7982); 
-      ellipse(px+2*unit, py-4*unit, 0.5*unit, 0.5*unit);
-      fill(#0BAF04); //잔디
-      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py);
-      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py);
-      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py);
+      ellipse(px+2*unit, py-4*unit, 0.5*unit, 0.5*unit); //꽃 작은거
+      fill(#0BAF04); //잔디의 색
+      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
+      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py); //잔디2
+      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3
    }
    }
    if( xx > yy ){ if( py<sy-13*sunit || py>sy+13*sunit){ //화면 비율 다를때 꽃 나오고 양 주변 사라지게 하는 세로
       fill(#DC5FFF); //꽃
-      ellipse(px+2*unit, py-4*unit, 2.5*unit, 2.5*unit);
+      ellipse(px+2*unit, py-4*unit, 2.5*unit, 2.5*unit); //꽃 큰거
       fill(#FF7982);
-      ellipse(px+2*unit, py-4*unit, 0.5*unit, 0.5*unit);
-      fill(#0BAF04); //잔디
-      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py);
-      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py);
-      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py);
+      ellipse(px+2*unit, py-4*unit, 0.5*unit, 0.5*unit); //꽃 작은거
+      fill(#0BAF04); //잔디 색
+      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
+      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py);//잔디2
+      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3
    }
    }
    //화면 비율이 같을때 나오는 코드
    if( xx == yy ){ if( py<sy-13*sunit || py>sy+13*sunit || px<sx-10*sunit || px>sx+10*sunit){ //화면 비율 다를때 꽃 나오고 양 주변 사라지게 하는 세로
       fill(#0BAF04); //잔디
-      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py);
-      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py);
-      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py);
+      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
+      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py); //잔디2
+      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3
    }
    }
   }
@@ -51,8 +51,8 @@ for(int px = 0; px <width; px+=5*unit){
 
 //양
 //다리
-fill(#64644E);
-strokeJoin(BEVEL);
+fill(#64644E); //다리의 색
+strokeJoin(BEVEL); //다리 둥글게 만들기 위한 코드
 noStroke();
 rect(sx-4*sunit, sy+4*sunit, sunit*1, sunit*4, 10); //앞다리 1
 rect(sx-2*sunit, sy+4*sunit, sunit*1, sunit*4, 10); //앞다리 2
@@ -61,7 +61,7 @@ rect(sx+2.5*sunit, sy+4*sunit, sunit*1, sunit*4, 10); //뒷다리 2
 
 fill(#F0EEB8);
 noStroke();//몸통
-ellipse(sx, sy, 8*sunit, 8*sunit); //큰원
+ellipse(sx, sy, 8*sunit, 8*sunit); //중심큰원
 ellipse(sx+5*sunit, sy-1*sunit, 4.2*sunit, 4.2*sunit); //큰원 오른쪽
 ellipse(sx+4.5*sunit, sy-3*sunit, 4.2*sunit, 4.2*sunit); //오른쪽 45도 상단
 ellipse(sx+4.5*sunit, sy+2*sunit, 4.2*sunit, 4.2*sunit); //오른쪽 45도 하단
@@ -82,8 +82,8 @@ ellipse(sx-5.2*sunit, sy-1.2*sunit, 0.5*sunit, 0.7*sunit); //눈 2
 noFill(); //귀 파트
 stroke(#64644E); //귀색
 strokeWeight(7); //귀 두껍게
-arc(sx-1*sunit, sy-3*sunit, sunit*3, sunit*3, HALF_PI, PI);
-arc(sx-7*sunit, sy-3*sunit, sunit*3, sunit*3, 0, HALF_PI);
+arc(sx-1*sunit, sy-3*sunit, sunit*3, sunit*3, HALF_PI, PI); //귀1
+arc(sx-7*sunit, sy-3*sunit, sunit*3, sunit*3, 0, HALF_PI); //귀2
 //입, 코, 인중
 strokeWeight(1);
 stroke(#0D0D0C);
