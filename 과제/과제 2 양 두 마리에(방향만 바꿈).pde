@@ -60,6 +60,7 @@ void draw(){
       ellipse(sx1-1*sunit, sy1+3*sunit, 5.2*sunit, 5.2*sunit); //오른쪽 6시 하단
       ellipse(sx1-4*sunit, sy1+2*sunit, 5.2*sunit, 7*sunit); //왼쪽 7시 하단
       ellipse(sx1-6*sunit, sy1, 3.5*sunit, 6*sunit); //왼쪽 9시 
+      ellipse(sx1-5*sunit, sy1-2*sunit, 6*sunit, 6*sunit); //왼쪽 9시 옆에 하나 더  
       ellipse(sx1-6*sunit, sy1-3.5*sunit, 3.2*sunit, 4*sunit); //왼쪽 11시 상단
       ellipse(sx1-4.5*sunit, sy1-5*sunit, 3.5*sunit, 3.5*sunit); //왼쪽 11시 옆 상단
       ellipse(sx1-2*sunit, sy1-3.5*sunit, 3.2*sunit, 3.8*sunit); //왼쪽 11시 옆옆 상단
@@ -104,6 +105,7 @@ void draw(){
       ellipse(sx2-1*sunit, sy2+3*sunit, 5.2*sunit, 5.2*sunit); //오른쪽 6시 하단
       ellipse(sx2-4*sunit, sy2+2*sunit, 5.2*sunit, 7*sunit); //왼쪽 7시 하단
       ellipse(sx2-6*sunit, sy2, 3.5*sunit, 6*sunit); //왼쪽 9시 
+      ellipse(sx2-5*sunit, sy2-2*sunit, 6*sunit, 6*sunit); //왼쪽 9시 옆에 하나 더  
       ellipse(sx2-6*sunit, sy2-3.5*sunit, 3.2*sunit, 4*sunit); //왼쪽 11시 상단
       ellipse(sx2-4.5*sunit, sy2-5*sunit, 3.5*sunit, 3.5*sunit); //왼쪽 11시 옆 상단
       ellipse(sx2-2*sunit, sy2-3.5*sunit, 3.2*sunit, 3.8*sunit); //왼쪽 11시 옆옆 상단
