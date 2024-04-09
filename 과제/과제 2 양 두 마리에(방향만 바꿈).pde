@@ -20,25 +20,28 @@ void draw(){
   background(14, 103, 9); //땅의 바탕 색
 
   //잔디
-   float px = 0;
-   float py = 0;
     
     //꽃
-    for(float px = 0; px<width; px+=5){
-      //if(px == px*10
+    for(float fx = 0; fx<width; fx+=5){
+      for(float fy = 0; fy<height; fy+=5){
       fill(#DC5FFF);  //꽃의 색
-      ellipse(px+2*unit, py-4*unit, 2.5*unit, 2.5*unit); //꽃 큰거
+      ellipse(fx+2*unit, fy-4*unit, 2.5*unit, 2.5*unit); //꽃 큰거
       fill(#FF7982); 
-      ellipse(px+2*unit, py-4*unit, 0.5*unit, 0.5*unit); //꽃 작은거
+      ellipse(fx+2*unit, fy-4*unit, 0.5*unit, 0.5*unit); //꽃 작은거
       fill(#0BAF04); //잔디의 색
-      triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
-      triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py); //잔디2
-      triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3 
-      
+      triangle(fx+unit, fy, fx+unit*2, fy-3*unit, fx+4*unit, fy); //잔디1
+      triangle(fx+2*unit, fy, fx+unit*3, fy-4*unit, fx+4*unit, fy); //잔디2
+      triangle(fx+2*unit, fy-3*unit, fx+unit*3, fy, fx+5*unit, fy); //잔디3 
+      }
+    }
+    for(float px = 0; px<width; px+=5){
+      for(float py = 0; py<height; py+=5){
      //잔디
        triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
        triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py); //잔디2
-       triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3 
+       triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3
+      }
+    }
   
       //양 1
       //다리
