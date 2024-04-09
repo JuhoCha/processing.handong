@@ -3,9 +3,9 @@ size(1000, 800);
 background(14, 103, 9); //땅의 바탕 색
 }
 
-int unit = height/10; //잔디에 쓸 unit을 지정함
+int unit = height/120; //잔디에 쓸 unit을 지정함
 
-float sunit = height/10; //양의 float
+float sunit = height/80; //양의 float
 float sx1 = width*3/4; //양1의 x좌표 (오른쪽)
 float sy1 = height*2/3; //양1의 y좌표
 float sx2 = width*1/3; //양2의 x좌표 (왼쪽)
@@ -23,6 +23,9 @@ void draw(){
    float px = 0;
    float py = 0;
     
+    //꽃
+    for(float px = 0; px<width; px+=5){
+      //if(px == px*10
       fill(#DC5FFF);  //꽃의 색
       ellipse(px+2*unit, py-4*unit, 2.5*unit, 2.5*unit); //꽃 큰거
       fill(#FF7982); 
@@ -31,6 +34,11 @@ void draw(){
       triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
       triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py); //잔디2
       triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3 
+      
+     //잔디
+       triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
+       triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py); //잔디2
+       triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3 
   
       //양 1
       //다리
@@ -51,11 +59,11 @@ void draw(){
       ellipse(sx1+2*sunit, sy1+3*sunit, 4.2*sunit, 4.2*sunit); //오른쪽 5시 하단
       ellipse(sx1-1*sunit, sy1+3*sunit, 5.2*sunit, 5.2*sunit); //오른쪽 6시 하단
       ellipse(sx1-4*sunit, sy1+2*sunit, 5.2*sunit, 7*sunit); //왼쪽 7시 하단
-      ellipse(sx1-6*sunit, sy1, 5*sunit, 6*sunit); //왼쪽 9시 
-      ellipse(sx1-6*sunit, sy1-3.5*sunit, 5.2*sunit, 5.2*sunit); //왼쪽 11시 상단
-      ellipse(sx1-4.5*sunit, sy1-5*sunit, 5.5*sunit, 4.5*sunit); //왼쪽 11시 옆 상단
-      ellipse(sx1-2*sunit, sy1-3.5*sunit, 5.2*sunit, 4.8*sunit); //왼쪽 11시 옆옆 상단
-      ellipse(sx1+1.5*sunit, sy1-4*sunit, 6.1*sunit, 6.2*sunit); //12시
+      ellipse(sx1-6*sunit, sy1, 3.5*sunit, 6*sunit); //왼쪽 9시 
+      ellipse(sx1-6*sunit, sy1-3.5*sunit, 3.2*sunit, 4*sunit); //왼쪽 11시 상단
+      ellipse(sx1-4.5*sunit, sy1-5*sunit, 3.5*sunit, 3.5*sunit); //왼쪽 11시 옆 상단
+      ellipse(sx1-2*sunit, sy1-3.5*sunit, 3.2*sunit, 3.8*sunit); //왼쪽 11시 옆옆 상단
+      ellipse(sx1+1.5*sunit, sy1-4*sunit, 5.1*sunit, 4.2*sunit); //12시
 
       //얼굴
       fill(#FFFFF2); //머리 색
@@ -95,11 +103,11 @@ void draw(){
       ellipse(sx2+2*sunit, sy2+3*sunit, 4.2*sunit, 4.2*sunit); //오른쪽 5시 하단
       ellipse(sx2-1*sunit, sy2+3*sunit, 5.2*sunit, 5.2*sunit); //오른쪽 6시 하단
       ellipse(sx2-4*sunit, sy2+2*sunit, 5.2*sunit, 7*sunit); //왼쪽 7시 하단
-      ellipse(sx2-6*sunit, sy2, 5*sunit, 6*sunit); //왼쪽 9시 
-      ellipse(sx2-6*sunit, sy2-3.5*sunit, 5.2*sunit, 5.2*sunit); //왼쪽 11시 상단
-      ellipse(sx2-4.5*sunit, sy2-5*sunit, 5.5*sunit, 5.5*sunit); //왼쪽 11시 옆 상단
-      ellipse(sx2-2*sunit, sy2-3.5*sunit, 5.2*sunit, 4.8*sunit); //왼쪽 11시 옆옆 상단
-      ellipse(sx2+1.5*sunit, sy2-4*sunit, 6.1*sunit, 6.2*sunit); //12시
+      ellipse(sx2-6*sunit, sy2, 3.5*sunit, 6*sunit); //왼쪽 9시 
+      ellipse(sx2-6*sunit, sy2-3.5*sunit, 3.2*sunit, 4*sunit); //왼쪽 11시 상단
+      ellipse(sx2-4.5*sunit, sy2-5*sunit, 3.5*sunit, 3.5*sunit); //왼쪽 11시 옆 상단
+      ellipse(sx2-2*sunit, sy2-3.5*sunit, 3.2*sunit, 3.8*sunit); //왼쪽 11시 옆옆 상단
+      ellipse(sx2+1.5*sunit, sy2-4*sunit, 5.1*sunit, 4.2*sunit); //12시
 
       //얼굴
       fill(#FFFFF2); //머리 색
