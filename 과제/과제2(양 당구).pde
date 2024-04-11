@@ -1,19 +1,28 @@
   void setup(){
     size(1000, 800);
     background(14, 103, 9); //땅의 바탕 색
-    unit = height/120;
+    unit = height/120; //꽃과 잔디에 쓸 유닛
+    sunit = height/80; //양에 쓸 유닛
+    
+    sx1 = width*3/4; //양1 x좌표
+    sy1 = height*2/3; //양1 y좌표
+    sx2 = width*1/3;  //양2 x좌표
+    sy2 = height*2/3; //양2 y좌표
+    
+    xx = width; //꽃에서 사용하는 x
+    yy = height; //꽃에서 사용하는 y
   }
 
 //int unit = height/120; //잔디에 쓸 unit을 지정함
 int unit;
-float sunit = height/80; //양의 float
-float sx1 = width*3/4; //양1의 x좌표 (오른쪽)
-float sy1 = height*2/3; //양1의 y좌표
-float sx2 = width*1/3; //양2의 x좌표 (왼쪽)
-float sy2 = height*2/3; //양2의 y좌표
+float sunit; //양의 float
+float sx1; //양1의 x좌표 (오른쪽)
+float sy1; //양1의 y좌표
+float sx2; //양2의 x좌표 (왼쪽)
+float sy2; //양2의 y좌표
 
-int xx = width; //꽃 부분에서 사용할 x 
-int yy = height; //꽃 부분에서 사용할 y
+int xx; //꽃 부분에서 사용할 x 
+int yy; //꽃 부분에서 사용할 y
 
 
 
@@ -144,4 +153,3 @@ void draw(){
       line(sx2+4.3*sunit, sy2+0.5*sunit, sx2+4*sunit, sy2+1*sunit);
       arc(sx2+4*sunit, sy2+0.7*sunit, sunit*1, sunit*1, 0+HALF_PI/3, PI-HALF_PI/3); //입
 }
-
