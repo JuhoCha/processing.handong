@@ -43,11 +43,32 @@ void draw(){
     //  triangle(fx+2*unit, fy-3*unit, fx+unit*3, fy, fx+5*unit, fy); //잔디3 
     //  }
     //}
+    for(float fy = 0; fy<height; fy+=(5*unit)){ //꽃 정의
+      for(float fx = 0; fx<width; fx+=5*unit){ //꽃 x정의
+        if((fy/(5*unit)) % 2 != 0){
+          if((fx/(5*unit)) % 3 != 0){
+          fill(#DC5FFF);  //꽃의 색
+          ellipse(fx+2*unit, fy-4*unit, 2.5*unit, 2.5*unit); //꽃 큰거
+          fill(#FF7982); 
+          ellipse(fx+2*unit, fy-4*unit, 0.5*unit, 0.5*unit); //꽃 작은거
+          }
+        }
+        else{
+          if(((fx+(5*unit))/(5*unit)) % 3 != 0){
+            fill(#DC5FFF);  //꽃의 색
+          ellipse(fx+2*unit, fy-4*unit, 2.5*unit, 2.5*unit); //꽃 큰거
+          fill(#FF7982); 
+          ellipse(fx+2*unit, fy-4*unit, 0.5*unit, 0.5*unit); //꽃 작은거
+          }
+        }
+      }
+    }
     for(float py = 0; py<height; py+=(5*unit)){
       for(float px = 0; px<width; px+=5*unit){
        //잔디
          if((py/(5*unit)) % 2 != 0){ //
            if((px/(5*unit)) % 3 != 0){
+             fill(#0BAF04);
              triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
              triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py); //잔디2
              triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3
@@ -55,6 +76,7 @@ void draw(){
          }
          else{
            if(((px+(5*unit))/(5*unit)) % 3 != 0){
+             fill(#0BAF04);
              triangle(px+unit, py, px+unit*2, py-3*unit, px+4*unit, py); //잔디1
              triangle(px+2*unit, py, px+unit*3, py-4*unit, px+4*unit, py); //잔디2
              triangle(px+2*unit, py-3*unit, px+unit*3, py, px+5*unit, py); //잔디3
