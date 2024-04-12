@@ -1,0 +1,45 @@
+void setup() {
+  size(1000, 800);
+  background(14, 103, 9);
+  unit = height/120; //꽃과 잔디에 쓸 유닛
+}
+
+int unit;
+
+void draw() {
+  background(14, 103, 9);
+  grass(0, 0, true, #0BAF04 );
+  ground(0, 0, height/120);
+}
+
+void grass(float fx, float fy , boolean flower, color clr) {
+
+  fill(clr);
+  triangle(fx+unit, fy, fx+unit*2, fy-3*unit, fx+4*unit, fy);//잔디 1
+  triangle(fx+2*unit, fy, fx+unit*3, fy-4*unit, fx+4*unit, fy); //잔디2
+  triangle(fx+2*unit, fy-3*unit, fx+unit*3, fy, fx+5*unit, fy); //잔디3
+  if (flower == true) {
+    fill(clr);
+    noStroke();
+    ellipse(fx+2*unit, fy-4*unit, 0.5*unit, 0.5*unit); //꽃 작은거
+    fill(clr);
+    ellipse(fx+2*unit, fy-4*unit, 2.5*unit, 2.5*unit); //꽃 큰거
+  }
+}
+
+void ground(float y, float x, int unit) {
+  int line = 1;
+  int order = 0;
+  for (int py = 0; py<height; py += 5*unit) {
+    for (int px = 0; px<width; px += 5*unit) {
+      if(line %2 ==1){
+        grass(x, y, 0, #0BAF04);
+      }
+      else if(order %3 ==2){
+        grass(x, y, 1, #0BAF04);
+      }
+   line++;
+   order++;
+    }
+  }
+}
