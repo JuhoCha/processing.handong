@@ -32,14 +32,30 @@ void ground(float y, float x, int unit) {
   int order = 0;
   for (int py = 0; py<height; py += 5*unit) {
     for (int px = 0; px<width; px += 5*unit) {
+      //홀수줄 첫번째
       if(line %2 ==1){
-        grass(x, y, 0, #0BAF04);
-      }
-      else if(order %3 ==2){
-        grass(x, y, 1, #0BAF04);
-      }
-   line++;
-   order++;
+        if(order %3 ==2){
+          grass(x, y, true, #0BAF04);
+        }
+        if(order %3 == 1){
+          grass(x, y, true, #0BAF04);        
+        }
+        if(order %3 == 0){
+        }
+     }
+     //두번째 줄
+     else if(line %2 == 0){
+       if(order %3 == 2){
+        grass(x, y, true, #0BAF04);
+       }
+       if(order %3 == 1){
+         grass(x, y, true, #0BAF04);
+       }
+       if(order %3 == 0){
+       }  
     }
   }
+  line++;
+  order++;
+ }
 }
