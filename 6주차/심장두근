@@ -1,0 +1,43 @@
+float heartX = width*2/3;
+float heartY = height*2/3;
+float headX =  heartX - 25;
+float headY = heartY - 100;
+float scaleSize = 0.5;
+int count = 0;
+
+void setup(){
+  size(600, 300);
+  heartX = width*2/3;
+  heartY = height*2/3;
+  headX =  heartX - 25;
+  headY = heartY - 100;
+}
+
+void draw(){
+ background(#E8F55E);
+   head(headX, headY);
+   translate(heartX, heartY);
+
+   count = count += 1;
+   if(count==60) count = 0;
+   
+   if(count < 30) scaleSize = scaleSize*1.02;
+   else scaleSize = scaleSize*0.98;
+   
+   scale(scaleSize); //scale or translate are like not sutable for 도형. scale의 역할은 화면을 늘리는거
+   heart(0, 0);
+}
+
+void heart(float px, float py){
+ fill(#FF5267);
+ noStroke();
+ arc(px-15, py, 30, 30, PI, TWO_PI);//left
+ arc(px+15, py, 30, 30, PI, TWO_PI);//right
+ triangle(px+30, py, px, py+30, px-30, py);
+}
+
+void head(float phx, float phy){
+  fill(#462BFC);
+  ellipse(phx, phy, 50, 50);
+  rect(phx-150/2, phy+50/2, 150, 175, 15, 15, 0, 0);
+}
