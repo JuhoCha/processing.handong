@@ -86,6 +86,7 @@ void hero_sup(){//오른쪽
   if ((px+unit*7>width) || (px-unit*7<0)){ //양쪽 벽에 닿는다면  
     directionX_2 = -directionX_2;}//방향 전환
     if(directionX_2 == +1){//오른쪽 양의 방향이 바뀌면
+    fill(#FF3939);
     quad(px+30*unit, py+13*unit, px+35*unit, py+11*unit, px+35*unit, py+19*unit, px+30*unit, py+17*unit);//망토
     quad(px+30*unit, py+13*unit, px+34*unit, py+14*unit, px+34*unit, py+16*unit, px+30*unit, py+17*unit);//몸
     triangle(px+37*unit, py+14.5*unit, px+34*unit, py+14*unit, px+34*unit, py+15*unit); //윗다리
@@ -96,7 +97,14 @@ void hero_sup(){//오른쪽
     line(px+29*unit, py+14*unit, px+29*unit, py+16*unit);//머리선
   }
   else if (d == -1) {//머리가 왼쪽일때
-  
+    quad(px+30*unit, py+13*unit, px+35*unit, py+11*unit, px+35*unit, py+19*unit, px+30*unit, py+17*unit);//망토
+    quad(px+30*unit, py+13*unit, px+34*unit, py+14*unit, px+34*unit, py+16*unit, px+30*unit, py+17*unit);//몸
+    triangle(px+37*unit, py+14.5*unit, px+34*unit, py+14*unit, px+34*unit, py+15*unit); //윗다리
+    triangle(px+37*unit, py+15.5*unit, px+34*unit, py+15*unit, px+34*unit, py+16*unit); //아랫다리
+    ellipse(px+28.5*unit, py+13*unit, 3*unit, 1*unit);//오른쪽 팔
+    ellipse(px+32.5*unit, py+17*unit, 3*unit, 1*unit);//왼쪽 팔
+    ellipse(px+29*unit, py+15*unit, 2*unit, 2*unit);//머리통
+    line(px+29*unit, py+14*unit, px+29*unit, py+16*unit);//머리선
   }
   if ((py+unit*8>height) || (py-unit*8<0)) { //방향 바꿔주기 함수
     directionY_2=-directionY_2; //방향
