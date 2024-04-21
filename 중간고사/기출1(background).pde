@@ -9,15 +9,39 @@ void setup(){
 
 void draw(){
   background(#717171);
-  rain(height/40, height/20, 255);
+  rain(height/40, height/20, 215);
   hero();
 }
 
 void rain(float rx, float ry, color cl){
+ int line = 0;
+ int order = 0;
  for(float y = 0; y < height;  y += height/20){
    for(float x = 0; x < width; x += height/40){
-     stroke(cl);
-      line(rx*x, y*ry, x, y);}}
+     if(line %2 ==0){//홀수
+       if(order%2 ==0){//홀수
+         stroke(cl);
+           line(x, y+2*ry, x+rx, y);}
+             }
+        else{if(order %2 ==1){
+           //짝수일떈 그림 x
+              }
+            }
+            //다른쪽 
+       if(line %2 ==1){//홀수
+       if(order %2 ==1){//홀수
+         stroke(cl);
+           line(x, y+2*ry, x+rx, y);}
+             }
+        else{if(order %2 ==0){
+           //짝수일떈 그림 x
+              }
+            }
+    order ++;
+  }
+  order = 0;
+  line ++;
+ }
 }
   
 void hero(){
