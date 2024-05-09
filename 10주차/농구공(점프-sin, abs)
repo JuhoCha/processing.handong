@@ -1,0 +1,41 @@
+void setup() {
+  size(400, 600);
+  ballX = width;
+  ballY = height/2-25; 
+  maxH = height/2;
+}
+
+float ballX, ballY; 
+float ballY_jump;
+float jump_angle=0;
+int maxH;
+void draw() {
+  drawBackground();
+  ballX = ballX -1;
+  if(ballX<0) ballX=width;
+  //최대 높이가 점점 낮아지도록 만드는 코드
+  if(maxH >0)
+  maxH = maxH -1;
+  //점프 실습: 점프위치 = 기준위치 + sin(각도) * 최대높이
+  //직선의 움직임을 만들 때는 다음 이동할 위치를 자기 자신에게 업데이트
+  //곡선의 움직임을 만들 때는 이동할 위치가 어떤 기준점에서 떨어진 거리로 계산 -> 새로운 변수에 저장, 기준점은 유지 (자체적으로 따로 움직임)
+  jump_angle = jump_angle + 0.1; //sin곡선을 따라가기 위해서 전달해주는 값, 현재 내 위치가 sin 곡선 어디쯤인 것인지 알아내기 위해
+  ballY_jump = ballY - abs(sin(jump_angle))*maxH;
+  drawBall(ballX, ballY_jump);//주의1번  //공 그릴 때, 점프 위치 계산한 거에 그려야 한다
+}
+
+void drawBackground() {
+  fill(0, 0, 255);
+  rect(0, 0, width, height/2);
+  fill(175, 175, 16);
+  rect(0, height/2, width, height/2);  
+}
+
+void drawBall(float bx, float by) {
+  fill(103, 67, 9);
+  ellipse(bx, by, 50, 50);
+  // 농구공 무늬 왼쪽, 오른쪽 
+  arc(bx-25, by, 30, 30, radians(360-60), radians(360+60));
+  arc(bx+25, by, 30, 30, radians(180-60), radians(180+60));
+  line(bx, by-25, bx, by+25);
+}
