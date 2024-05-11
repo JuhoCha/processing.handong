@@ -28,10 +28,10 @@ void setup() {
   sx2 = width*1/3;  //양2 x좌표
   sy2 = height*2/3; //양2 y좌표
     
-  directionX_2 = 1; //방향 x
-  directionY_2 = 1; //방향 y
-  directionX_1 = 1; //방향 x
-  directionY_1 = 1; //방향 y
+  directionX_2 = random(3, 6); //방향 x
+  directionY_2 = directionX_2*1*10/100; //방향 y
+  directionX_1 = random(2, 4); //방향 x
+  directionY_1 = directionX_1*10/100; //방향 y
 }
 
 
