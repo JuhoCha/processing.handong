@@ -67,23 +67,27 @@ void draw() {
   if (d < 7*sheepUnit + 7*sheepUnit) {// if it is shorter than the sum of radius of two bodies
     sheep1Xd = -sheep1Xd;// change x direction of Sheep1
     sheep2Xd = -sheep2Xd;// change x direction of Sheep2
+    eventStartTime = millis();
+    nFreeze =1;
   }
-  if (currentTime - eventStartTime < 2000 || nFreeze ==1) { //오른쪽 양
+  currentTime = millis();
+  
+  if (currentTime - eventStartTime < 2000 ) { //오른쪽 양
   } else {
     print("s1:");
     println(eventStartTime);
     nFreeze =0;
     sheep1X = sheep1X +8*sheep1Xd;
-    sheep1Y = sheep1Y; +0.8 * sheep1Yd;
+    sheep1Y = sheep1Y +0.8 * sheep1Yd;
   }
   
-  if (1000 < currentTime - eventStartTime && currentTime - eventStartTime < 2000 )|| nFreeze ==1) { //오른쪽 양
+  if (1000 < currentTime - eventStartTime && currentTime - eventStartTime < 2000 ) { //오른쪽 양
   } else {
     print("s2:");
     println(eventStartTime);
     nFreeze =0;
     sheep2X = sheep2X +8*sheep2Xd;
-    sheep2Y = sheep2Y; +0.8 * sheep2Yd;
+    sheep2Y = sheep2Y +0.8 * sheep2Yd;
   }
 }
 
@@ -98,7 +102,7 @@ void grass1(float x, float y, boolean flower, color c) {
   for (int i=0; i<100; i++) { //draw 100 random grasses
     x = random(width);
     y = random(height);
-    fill(#55792E); // grass color
+    fill(#00FF92); // grass color
     stroke(#0D0C01); // grass outline
     triangle(x, y, x-1*grassUnit, y-3*grassUnit, x-2*grassUnit, y); // grass leaf
     triangle(x+1*grassUnit, y, x, y-4*grassUnit, x-1*grassUnit, y); // grass leaf
