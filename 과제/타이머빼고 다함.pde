@@ -16,6 +16,8 @@ float jump_angle1;
 float jump_angle2;
 float sheepY1;
 float sheepY2;
+float angle;
+float angle_direct;
 
 void setup() {
   size(1000, 800); // screen size
@@ -38,9 +40,19 @@ void setup() {
   jump_angle2=0;
   sheepY1=height*2/3;
   sheepY2=height*2/3;
+  angle = 0.0;
+  angle_direct=1;
 }
 
 void draw() {
+  if(angle>=PI/3){
+    angle_direct=-angle_direct;
+  } else if(angle<=0){
+    angle_direct=-angle_direct;
+  }
+  
+  angle+=sheep1Xs*1/100*angle_direct;
+  angle+=sheep2Xs*1/100*angle_direct;
 
   grasses();
 
@@ -49,7 +61,7 @@ void draw() {
   if (sheep1X < 0+7*sheepUnit || sheep1X > width-7*sheepUnit) sheep1Xd = -sheep1Xd; // Sheep1: direction change at left and right eges
   if (sheep1Y < 0+7*sheepUnit || sheep1Y > height-7*sheepUnit) sheep1Yd = -sheep1Yd;// Sheep1: direction change at top and bottom edges
 
-  sheep(sheep1X, sheepY1, sheep1Xd); // draw Sheep1
+  sheep(sheep1X, sheepY1, sheep1Xd, angle); // draw Sheep1
 
   jump_angle1 = jump_angle1 + sheep1Xs*0.02;
   sheepY1 = sheep1Y - abs(sin(jump_angle1))*maxH;
@@ -58,7 +70,7 @@ void draw() {
   sheep2Y += sheep2Yd*sheep2Ys; // motion of Sheep2 in y direction
   if (sheep2X < 0+7*sheepUnit || sheep2X > width-7*sheepUnit) sheep2Xd = -sheep2Xd;// Sheep2: direction change at left and right eges
   if (sheep2Y < 0+7*sheepUnit || sheep2Y > height-7*sheepUnit) sheep2Yd = -sheep2Yd;// Sheep2: direction change at top and bottom edges
-  sheep(sheep2X, sheepY2, sheep2Xd); // draw Sheep2r
+  sheep(sheep2X, sheepY2, sheep2Xd, angle); // draw Sheep2r
 
   jump_angle2 = jump_angle2 + sheep2Xs*0.02;
   sheepY2 = sheep2Y - abs(sin(jump_angle2))*maxH;
@@ -120,43 +132,24 @@ void grass1(float x, float y, boolean flower, color c) {
   }
 }
 
-void sheep(float x, float y, int xd) {
+void sheep(float x, float y, int xd, float an) {
   noStroke(); // no outline
   fill(#6A684D); // leg color
-   translate(x, y);
  
-  pushMatrix();
-  rotate(0);
-  rect(x-4*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // leftmost leg
-  rect(x-2*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // left leg
-  rect(x+2*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// right leg
-  rect(x+3.5*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// rightmost leg
+  pushMatrix();//오른다리
+  translate(x, y);
+  rotate(-an);
+  rect(2*sheepUnit, 4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// right leg
+  rect(3.5*sheepUnit, 4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// rightmost leg
   popMatrix();
-
-  pushMatrix();
-  rotate(30);
-  rect(x-4*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // leftmost leg
-  rect(x-2*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // left leg
-  rect(x+2*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// right leg
-  rect(x+3.5*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// rightmost leg
-  popMatrix();
-
-  pushMatrix();
-  rotate(-30);
-  rect(x-4*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // leftmost leg
-  rect(x-2*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // left leg
-  rect(x+2*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// right leg
-  rect(x+3.5*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// rightmost leg
+  pushMatrix();//왼다리
+  translate(x, y);
+  rotate(an);
+  rect(-4*sheepUnit, 4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // leftmost leg
+  rect(-2*sheepUnit, 4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // left leg
   popMatrix();
   
-  pushMatrix();
-  rotate(0);
-  rect(x-4*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // leftmost leg
-  rect(x-2*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5); // left leg
-  rect(x+2*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// right leg
-  rect(x+3.5*sheepUnit, y+4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// rightmost leg
-  popMatrix();
-
+  
   fill(#CBC9A0); // body color
   ellipse(x, y, 8*sheepUnit, 8*sheepUnit); // body
   ellipse(x-3.5*sheepUnit, y-2*sheepUnit, 4*sheepUnit, 4*sheepUnit); // fur12
