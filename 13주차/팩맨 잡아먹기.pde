@@ -78,7 +78,7 @@ void draw() {//드로우는 계속 모니터링 하고 업데이트 하는 일�
 
   
   if(keyPressed){//누르고 있는 동안 계속 무엇을 하고 싶을때, 손을 떼면 그만 두고 싶을 때
-    if(key=CODED && keyCode==LEFT) rpx = rpx -1;
+    if(key==CODED && keyCode==LEFT) rpx = rpx -1;
   }
   if(leftClick) rpx = rpx -1;
   //if(mousePressed){
@@ -100,7 +100,7 @@ void mousePressed(){
 
 boolean leftClick = false;
 void keyPressed(){//한번 누르고 손을 떼도 계속 유지되게 하고 싶을 때 >> 그 순간에 포착
-  if(key=CODED && keyCode==LEFT) leftClick = true;
+  if(key==CODED && keyCode==LEFT) leftClick = true;
 }
 
 //5-2 속도 파트에서 12페이지 사용  tweening  (시작점 + 총 거리 *이동하는 퍼센트) 그 퍼센트는 0~1사이의 값
