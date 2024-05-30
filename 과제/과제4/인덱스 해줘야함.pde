@@ -14,6 +14,7 @@ int []sheepxd = new int [100];
 int []sheepyd = new int [100];
 float []sheepxs = new float [100];
 float []sheepys = new float [100];
+float []jumpingsheepy = new float [100];
 float []jump_angle = new float [100];
 float []angle = new float [100];
 float []angle_direction = new float [100];
