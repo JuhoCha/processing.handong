@@ -26,8 +26,8 @@ void setup() {
   sheepUnit=height/160;
   grassUnit=height/120;// unit size of Sheep and Grass is proportional to the screen Height
  for(int i=0; i<100; i++){
-  sheepx[i]=width*1/3;
-  sheepy[i]=height*2/3;// initial location for Sheep1
+  sheepx[i]=random(0+sheepUnit*8, width-sheepUnit*8);
+  sheepy[i]=random(0+sheepUnit*8, width-sheepUnit*8);// initial location for Sheep1
   sheepxd[i]=+1;
   sheepyd[i]=+1; // initial direction for Sheep1, down right
   sheepxs[i]=random(2, 8);
