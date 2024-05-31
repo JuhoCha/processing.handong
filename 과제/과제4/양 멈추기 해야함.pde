@@ -65,7 +65,7 @@ void draw() {
 
       textSize(10);
       fill(0, 0, 0);
-      text(i, sheepx[i]-4*sheepUnit, sheepy[i]+2*sheepUnit);
+      text(i, sheepx[i]-4*sheepUnit, sheepy[i]+2*sheepUnit- abs(sin(jump_angle[i]))*maxH);
     
         // sheep1 leg_angle
         if (angle[i] > PI/3) {
