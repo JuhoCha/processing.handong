@@ -1,94 +1,85 @@
-float sheep1X, sheep1Y; // x, y location for Sheep1
-int sheep1Xd, sheep1Yd; // x, y direction for Sheep1
-float sheep1Xs, sheep1Ys; // x, y speed for Sheep1
-
 float sheepUnit, grassUnit; // unit size for Sheep and Grass
 float maxH;
-float eventStartTime=-2000;
-float currentTime = millis();
-float jump_angle1;
-float sheepY1;
-float angle11;
-float angle_direction1;
+
 
 float []grassx = new float [200];
 float []grassy = new float [200];
-
-//float []sheepx
-//float []sheepy
-//float []sheepxd
-//float []sheepyd
-//float []sheepxs
-//float []sheepys
-//float []jump_angle
-//float []angle
-//float []angle_direction
+float []sheepx = new float [100];
+float []sheepy = new float [100];
+float []jumpingy = new float [100];
+int []sheepxd = new int [100];
+float []sheepyd = new float [100];
+float []sheepxs = new float [100];
+float []sheepys = new float [100];
+float []jump_angle = new float [100];
+float []angle = new float [100];
+float []angle_direction = new float [100];
 
 
 void setup() {
   size(1600, 800); // screen size
-  sheep1X=width*1/3;
-  sheep1Y=height*2/3;// initial location for Sheep1
-  sheep1Xd=+1;
-  sheep1Yd=+1; // initial direction for Sheep1, down right
-  sheep1Xs=random(2, 8);
-  sheep1Ys=sheep1Xs*0.1; // initial speed for Sheep1, y speed is 10% of x speed
+   // initial direction for Sheep1, down right
+   // initial speed for Sheep1, y speed is 10% of x speed
   sheepUnit=height/160;
   grassUnit=height/120;// unit size of Sheep and Grass is proportional to the screen Height
   maxH=sheepUnit*5;
-  jump_angle1=0;
-  sheepY1=height*2/3;
-  angle11=0.0;
-  angle_direction1=1;
+  
   
   for(int i=0; i<200; i++){
     grassx[i] = random(0,width);
     grassy[i]= random(0,height);
+  }
+  for(int i=0; i<100; i++){
+   sheepx[i] = random(0+7*sheepUnit, width-7*sheepUnit);
+   sheepy[i] = random(0+7*sheepUnit, height-7*sheepUnit);
+   sheepxd[i]=+1;
+    sheepyd[i]=+1;
+    sheepxs[i]=random(2, 8);
+    sheepys[i]=sheepxs[i]*0.1;
+    jump_angle[i]=0;
+    angle[i]=0.0;
+    angle_direction[i]=1;
   }
   
 }
 
 void draw() {
   
-  grasses();
+  background(98, 188, 76);
   
-  //for(int i=0; i<100; i++){
-  //  sheep(sheepx[i], sheepy[i], sheepxd[i]);
-  //  sheepx[i] +=sheepxd[i]*sheeps[i];
-  //}
+  for(int i=0; i<100; i++){
+    grass1(grassx[i], grassy[i], false, color(0,0,0));
+    grass1(grassx[i+100], grassy[i+100], true, color(random(255), random(255), random(255)));
+  }
+  
+  for(int i=0; i<100; i++){
+    sheep(sheepx[i], jumpingy[i], sheepxd[i], angle[i]);
+    sheepx[i] = sheepx[i] + sheepxd[i]*sheepxs[i]; // motion of Sheep1 in x direction
+    sheepy[i] = sheepy[i] + sheepyd[i]*sheepys[i]; // motion of Sheep1 in y direction
+    jump_angle[i] = jump_angle[i] + sheepxs[i]*0.02;
+    jumpingy[i] = sheepy[i] - abs(sin(jump_angle[i]))*maxH;
+    angle[i]+=sheepxs[i]*1/100*angle_direction[i];
+    if (sheepx[i] < 0+7*sheepUnit || sheepx[i] > width-7*sheepUnit) sheepxd[i] = -sheepxd[i]; // Sheep1: direction change at left and right eges
+  if (sheepy[i] < 0+7*sheepUnit || sheepy[i] > height-7*sheepUnit) sheepyd[i] = -sheepyd[i];// Sheep1: direction change at top and bottom edges
  
-  currentTime = millis();
+    // sheep1 leg_angle
+  if (angle[i] > PI/3) {
+    angle_direction[i] = -angle_direction[i];
+  } else if (angle[i] < 0) {
+    angle_direction[i] = -angle_direction[i];
+  }
+  }
+
   
   //stopping code of sheep1
-  if ((currentTime - eventStartTime < 2000)) {//현재시간
-  } else {
-    sheep1X = sheep1X + sheep1Xd*sheep1Xs; // motion of Sheep1 in x direction
-    sheep1Y = sheep1Y + sheep1Yd*sheep1Ys; // motion of Sheep1 in y direction
-    jump_angle1 = jump_angle1 + sheep1Xs*0.02;
-    sheepY1 = sheep1Y - abs(sin(jump_angle1))*maxH;
-    angle11+=sheep1Xs*1/100*angle_direction1;
-  }
-  sheep(sheep1X, sheepY1, sheep1Xd, angle11); // draw Sheep1
-
-
-if (sheep1X < 0+7*sheepUnit || sheep1X > width-7*sheepUnit) sheep1Xd = -sheep1Xd; // Sheep1: direction change at left and right eges
-  if (sheep1Y < 0+7*sheepUnit || sheep1Y > height-7*sheepUnit) sheep1Yd = -sheep1Yd;// Sheep1: direction change at top and bottom edges
 
     
-  // sheep1 leg_angle
-  if (angle11 > PI/3) {
-    angle_direction1 = -angle_direction1;
-  } else if (angle11 < 0) {
-    angle_direction1 = -angle_direction1;
-  }
-}
+  
 
-void grasses() { // all grasses
-  background(98, 188, 76);
-  for(int i=0; i<100; i++){
-  grass1(grassx[i], grassy[i], false, color(207, 101, 98)); // one grass without flower
-  grass1(grassx[i+100], grassy[i+100], true, color(207, 23, 131)); // one grass with flower
-  }
+
+
+    
+ 
 }
 
 void grass1(float x, float y, boolean flower, color c) {
