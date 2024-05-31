@@ -18,6 +18,7 @@ float []jumpy = new float [100];
 float []jump_angle = new float [100];
 float []angle = new float [100];
 float []angle_direction = new float [100];
+boolean on = true;
 
 
 
@@ -52,6 +53,8 @@ void draw() {
   
   for(int i=0; i<100; i++){
     sheep(sheepx[i], jumpy[i], sheepxd[i], angle[i]);
+    
+   if(on){
     sheepx[i] +=sheepxd[i]*sheepxs[i];
     sheepy[i] +=sheepyd[i]*sheepys[i];
     jump_angle[i] = jump_angle[i] + sheepxs[i]*0.02;
@@ -60,6 +63,15 @@ void draw() {
     angle[i]+=sheepxs[i]*1/100*angle_direction[i];
     sheepx[i] = sheepx[i] + sheepxd[i]*sheepxs[i]; // motion of Sheep1 in x direction
     sheepy[i] = sheepy[i] + sheepyd[i]*sheepys[i]; // motion of Sheep1 in y direction
+   }
+   if (keyPressed&& key== 's') {
+      on = false;
+    }
+    //resuming code of sheep
+    if (keyPressed&& key== 'r') {
+      on = true;
+    }
+   
     if (sheepx[i] < 0+7*sheepUnit || sheepx[i] > width-7*sheepUnit) sheepxd[i] = -sheepxd[i]; // Sheep1: direction change at left and right eges
     if (sheepy[i] < 0+7*sheepUnit || sheepy[i] > height-7*sheepUnit) sheepyd[i] = -sheepyd[i];// Sheep1: direction change at top and bottom edges
 
