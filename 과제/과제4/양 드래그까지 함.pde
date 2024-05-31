@@ -64,13 +64,13 @@ void draw() {
       sheepx[i] = sheepx[i] + sheepxd[i]*sheepxs[i]; // motion of Sheep1 in x direction
       sheepy[i] = sheepy[i] + sheepyd[i]*sheepys[i]; // motion of Sheep1 in y direction
     }
-    if (keyPressed&& key== 's') {
+    if (keyPressed && key == 's') {
       on = false;
     }
-    //resuming code of sheep
-    if (keyPressed&& key== 'r') {
+    if (keyPressed && key == 'r') {
       on = true;
     }
+    
     if (mousePressed&& i == selected) {
       sheepx[selected] = mouseX;
       sheepy[selected] = mouseY;
