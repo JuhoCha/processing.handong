@@ -14,7 +14,7 @@ int []sheepxd = new int [100];
 int []sheepyd = new int [100];
 float []sheepxs = new float [100];
 float []sheepys = new float [100];
-float []jumpingsheepy = new float [100];
+float []jumpy = new float [100];
 float []jump_angle = new float [100];
 float []angle = new float [100];
 float []angle_direction = new float [100];
@@ -26,9 +26,10 @@ void setup() {
   maxH=sheepUnit*5;
   sheepUnit=height/160;
   grassUnit=height/120;// unit size of Sheep and Grass is proportional to the screen Height
+ 
  for(int i=0; i<100; i++){
-  sheepx[i]=random(0+sheepUnit*8, width-sheepUnit*8);
-  sheepy[i]=random(0+sheepUnit*8, width-sheepUnit*8);// initial location for Sheep1
+  sheepx[i]=random(0+sheepUnit*7, width-sheepUnit*7);
+  sheepy[i]=random(0+sheepUnit*7, width-sheepUnit*7);// initial location for Sheep1
   sheepxd[i]=+1;
   sheepyd[i]=+1; // initial direction for Sheep1, down right
   sheepxs[i]=random(2, 8);
@@ -50,17 +51,21 @@ void draw() {
   grasses();
   
   for(int i=0; i<100; i++){
-    sheep(sheepx[i], sheepy[i], sheepxd[i], angle[i]);
+    sheep(sheepx[i], jumpy[i], sheepxd[i], angle[i]);
     sheepx[i] +=sheepxd[i]*sheepxs[i];
     sheepy[i] +=sheepyd[i]*sheepys[i];
     jump_angle[i] = jump_angle[i] + sheepxs[i]*0.02;
     sheepy[i] = sheepy[i] - abs(sin(jump_angle[i]))*maxH;
+    jumpy[i] = sheepy[i] - abs(sin(jump_angle[i]))*maxH;
     angle[i]+=sheepxs[i]*1/100*angle_direction[i];
     sheepx[i] = sheepx[i] + sheepxd[i]*sheepxs[i]; // motion of Sheep1 in x direction
     sheepy[i] = sheepy[i] + sheepyd[i]*sheepys[i]; // motion of Sheep1 in y direction
     if (sheepx[i] < 0+7*sheepUnit || sheepx[i] > width-7*sheepUnit) sheepxd[i] = -sheepxd[i]; // Sheep1: direction change at left and right eges
     if (sheepy[i] < 0+7*sheepUnit || sheepy[i] > height-7*sheepUnit) sheepyd[i] = -sheepyd[i];// Sheep1: direction change at top and bottom edges
 
+      textSize(10);
+      fill(0, 0, 0);
+      text(i, sheepx[i]-4*sheepUnit, sheepy[i]+2*sheepUnit);
     
         // sheep1 leg_angle
         if (angle[i] > PI/3) {
