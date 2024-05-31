@@ -80,8 +80,8 @@ void draw() {
     if (sheepy[i] < 0+7*sheepUnit || sheepy[i] > height-7*sheepUnit) sheepyd[i] = -sheepyd[i];// Sheep1: direction change at top and bottom edges
   
     if(i == selected){
-    textSize(50);
-    fill(#7C03FF);
+    textSize(20);
+    fill(#FF0307);
     text(i, sheepx[i]-4*sheepUnit, sheepy[i]+2*sheepUnit- abs(sin(jump_angle[i]))*maxH);
     }
     else{
@@ -100,7 +100,7 @@ void draw() {
 
 void mousePressed() {
 for(int i = 0; i < 100; i++){
-  if(sheepx[i] - 5*sheepUnit < mouseX && mouseX < sheepx[i] + 5*sheepUnit && sheepy[i] - 5*sheepUnit < mouseY && mouseY < sheepy[i] + 5*sheepUnit){
+  if(sheepx[i] - 7*sheepUnit < mouseX && mouseX < sheepx[i] + 7*sheepUnit && sheepy[i] - 7*sheepUnit < mouseY && mouseY < sheepy[i] + 7*sheepUnit){
     selected = i;
   } 
 }
