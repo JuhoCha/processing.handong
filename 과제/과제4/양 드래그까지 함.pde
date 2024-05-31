@@ -19,6 +19,7 @@ float []jump_angle = new float [100];
 float []angle = new float [100];
 float []angle_direction = new float [100];
 boolean on = true;
+int selected = -1;
 
 
 
@@ -27,96 +28,111 @@ void setup() {
   maxH=sheepUnit*5;
   sheepUnit=height/160;
   grassUnit=height/120;// unit size of Sheep and Grass is proportional to the screen Height
- 
- for(int i=0; i<100; i++){
-  sheepx[i]=random(0+sheepUnit*7, width-sheepUnit*7);
-  sheepy[i]=random(0+sheepUnit*7, width-sheepUnit*7);// initial location for Sheep1
-  sheepxd[i]=+1;
-  sheepyd[i]=+1; // initial direction for Sheep1, down right
-  sheepxs[i]=random(2, 8);
-  sheepys[i]=sheepxs[i]*0.1; // initial speed for Sheep1, y speed is 10% of x speed
-  jump_angle[i]=0;
-  angle[i]=0.0;
-  angle_direction[i]=1;
- }
-  
-  for(int i=0; i<200; i++){
-    grassx[i] = random(0,width);
-    grassy[i]= random(0,height);
+
+  for (int i=0; i<100; i++) {
+    sheepx[i]=random(0+sheepUnit*7, width-sheepUnit*7);
+    sheepy[i]=random(0+sheepUnit*7, width-sheepUnit*7);// initial location for Sheep1
+    sheepxd[i]=+1;
+    sheepyd[i]=+1; // initial direction for Sheep1, down right
+    sheepxs[i]=random(2, 8);
+    sheepys[i]=sheepxs[i]*0.1; // initial speed for Sheep1, y speed is 10% of x speed
+    jump_angle[i]=0;
+    angle[i]=0.0;
+    angle_direction[i]=1;
   }
 
+  for (int i=0; i<200; i++) {
+    grassx[i] = random(0, width);
+    grassy[i]= random(0, height);
+  }
 }
 
 void draw() {
-  
+
   grasses();
-  
-  for(int i=0; i<100; i++){
+
+  for (int i=0; i<100; i++) {
     sheep(sheepx[i], jumpy[i], sheepxd[i], angle[i]);
-    
-   if(on){
-    sheepx[i] +=sheepxd[i]*sheepxs[i];
-    sheepy[i] +=sheepyd[i]*sheepys[i];
-    jump_angle[i] = jump_angle[i] + sheepxs[i]*0.02;
-    sheepy[i] = sheepy[i] - abs(sin(jump_angle[i]))*maxH;
-    jumpy[i] = sheepy[i] - abs(sin(jump_angle[i]))*maxH;
-    angle[i]+=sheepxs[i]*1/100*angle_direction[i];
-    sheepx[i] = sheepx[i] + sheepxd[i]*sheepxs[i]; // motion of Sheep1 in x direction
-    sheepy[i] = sheepy[i] + sheepyd[i]*sheepys[i]; // motion of Sheep1 in y direction
-   }
-   if (keyPressed&& key== 's') {
+
+    if (on) {
+      sheepx[i] +=sheepxd[i]*sheepxs[i];
+      sheepy[i] +=sheepyd[i]*sheepys[i];
+      jump_angle[i] = jump_angle[i] + sheepxs[i]*0.02;
+      sheepy[i] = sheepy[i] - abs(sin(jump_angle[i]))*maxH;
+      jumpy[i] = sheepy[i] - abs(sin(jump_angle[i]))*maxH;
+      angle[i]+=sheepxs[i]*1/100*angle_direction[i];
+      sheepx[i] = sheepx[i] + sheepxd[i]*sheepxs[i]; // motion of Sheep1 in x direction
+      sheepy[i] = sheepy[i] + sheepyd[i]*sheepys[i]; // motion of Sheep1 in y direction
+    }
+    if (keyPressed&& key== 's') {
       on = false;
     }
     //resuming code of sheep
     if (keyPressed&& key== 'r') {
       on = true;
     }
-   
+    if (mousePressed&& i == selected) {
+      sheepx[selected] = mouseX;
+      sheepy[selected] = mouseY;
+    }
+
     if (sheepx[i] < 0+7*sheepUnit || sheepx[i] > width-7*sheepUnit) sheepxd[i] = -sheepxd[i]; // Sheep1: direction change at left and right eges
     if (sheepy[i] < 0+7*sheepUnit || sheepy[i] > height-7*sheepUnit) sheepyd[i] = -sheepyd[i];// Sheep1: direction change at top and bottom edges
-
-      textSize(10);
-      fill(0, 0, 0);
-      text(i, sheepx[i]-4*sheepUnit, sheepy[i]+2*sheepUnit- abs(sin(jump_angle[i]))*maxH);
-    
-        // sheep1 leg_angle
-        if (angle[i] > PI/3) {
-          angle_direction[i] = -angle_direction[i];
-        } else if (angle[i] < 0) {
-          angle_direction[i] = -angle_direction[i];
-        }
+  
+    if(i == selected){
+    textSize(50);
+    fill(#7C03FF);
+    text(i, sheepx[i]-4*sheepUnit, sheepy[i]+2*sheepUnit- abs(sin(jump_angle[i]))*maxH);
+    }
+    else{
+    textSize(10);
+    fill(0, 0, 0);
+    text(i, sheepx[i]-4*sheepUnit, sheepy[i]+2*sheepUnit- abs(sin(jump_angle[i]))*maxH);
+    }
+    // sheep1 leg_angle
+    if (angle[i] > PI/3) {
+      angle_direction[i] = -angle_direction[i];
+    } else if (angle[i] < 0) {
+      angle_direction[i] = -angle_direction[i];
     }
   }
- 
-  
+}
+
+void mousePressed() {
+for(int i = 0; i < 100; i++){
+  if(sheepx[i] - 5*sheepUnit < mouseX && mouseX < sheepx[i] + 5*sheepUnit && sheepy[i] - 5*sheepUnit < mouseY && mouseY < sheepy[i] + 5*sheepUnit){
+    selected = i;
+  } 
+}
+}
 
 
 
 void grasses() { // all grasses
   background(98, 188, 76);
-  for(int i=0; i<100; i++){
-  grass1(grassx[i], grassy[i], false, color(207, 101, 98)); // one grass without flower
-  grass1(grassx[i+100], grassy[i+100], true, color(207, 23, 131)); // one grass with flower
+  for (int i=0; i<100; i++) {
+    grass1(grassx[i], grassy[i], false, color(207, 101, 98)); // one grass without flower
+    grass1(grassx[i+100], grassy[i+100], true, color(207, 23, 131)); // one grass with flower
   }
 }
 
 void grass1(float x, float y, boolean flower, color c) {
 
   //randomSeed(1); //setting position of the grasses
-    fill(#55792E); // grass color
-    stroke(#0D0C01); // grass outline
-    triangle(x, y, x-1*grassUnit, y-3*grassUnit, x-2*grassUnit, y); // grass leaf
-    triangle(x+1*grassUnit, y, x, y-4*grassUnit, x-1*grassUnit, y); // grass leaf
-    triangle(x+2*grassUnit, y, x-1*grassUnit, y-3*grassUnit, x, y); // grass leaf
-    if (flower) { // if there is a flower
-      noStroke(); // no outline
-      fill(random(256), random(256), random(256));
-      //fill(c); // flower color - given as a parameter
-      ellipse(x, y-4*grassUnit, 3*grassUnit, 3*grassUnit); // outer circle
-      fill(#710E5C); // innor color
-      ellipse(x, y-4*grassUnit, 1*grassUnit, 1*grassUnit); // inner circle
-    }
+  fill(#55792E); // grass color
+  stroke(#0D0C01); // grass outline
+  triangle(x, y, x-1*grassUnit, y-3*grassUnit, x-2*grassUnit, y); // grass leaf
+  triangle(x+1*grassUnit, y, x, y-4*grassUnit, x-1*grassUnit, y); // grass leaf
+  triangle(x+2*grassUnit, y, x-1*grassUnit, y-3*grassUnit, x, y); // grass leaf
+  if (flower) { // if there is a flower
+    noStroke(); // no outline
+    fill(random(256), random(256), random(256));
+    //fill(c); // flower color - given as a parameter
+    ellipse(x, y-4*grassUnit, 3*grassUnit, 3*grassUnit); // outer circle
+    fill(#710E5C); // innor color
+    ellipse(x, y-4*grassUnit, 1*grassUnit, 1*grassUnit); // inner circle
   }
+}
 
 
 void sheep(float x, float y, int xd, float a) {
@@ -134,7 +150,7 @@ void sheep(float x, float y, int xd, float a) {
   rect(2*sheepUnit, 4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// right leg
   rect(3.5*sheepUnit, 4*sheepUnit, 1*sheepUnit, 4*sheepUnit, 5);// rightmost leg
   popMatrix();
-  
+
   fill(#CBC9A0); // body color
   ellipse(x, y, 8*sheepUnit, 8*sheepUnit); // body
   ellipse(x-3.5*sheepUnit, y-2*sheepUnit, 4*sheepUnit, 4*sheepUnit); // fur12
