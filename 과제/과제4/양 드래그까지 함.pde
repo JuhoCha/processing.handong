@@ -31,7 +31,7 @@ void setup() {
 
   for (int i=0; i<100; i++) {
     sheepx[i]=random(0+sheepUnit*10, width-sheepUnit*10); 
-    sheepy[i]=random(0-sheepUnit*10, height-sheepUnit*10);// initial location for Sheep1
+    sheepy[i]=random(0+sheepUnit*10, height-sheepUnit*10);// initial location for Sheep1
     sheepxd[i]=+1;
     sheepyd[i]=+1; // initial direction for Sheep1, down right
     sheepxs[i]=random(2, 8);
