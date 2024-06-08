@@ -3,10 +3,10 @@
 //코드 짤줄 아는것 부터 바로바로 쓰기
 
 int unit = 10;
-float heartX[] = new float[100];
-float heartY[] = new float[100];
-color heartColor[] = new color[100];
-boolean Selected[] = new boolean[100];
+float []heartX = new float[100];
+float []heartY = new float[100];
+color []heartColor = new color[100];
+boolean []Selected = new boolean[100];
 
 void setup() {
   size(900, 600);
